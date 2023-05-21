@@ -1,4 +1,10 @@
 import './globals.css'
+import { Poppins } from 'next/font/google'
+
+const poppins = Poppins({
+  weight: '400',
+  subsets: ['latin']
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className='overflow-hidden'>
+      <body className={poppins.className}>{children}</body>
     </html>
   )
 }
