@@ -99,8 +99,6 @@ const countryList = [
 	"Guinea-Bissau",
 	"Guyana",
 	"Haiti",
-	"Heard Island and McDonald Islands",
-	"Holy See",
 	"Honduras",
 	"Hong Kong",
 	"Hungary",
@@ -124,7 +122,6 @@ const countryList = [
 	"Korea",
 	"Kuwait",
 	"Kyrgyzstan",
-	"Lao People's Democratic Republic",
 	"Latvia",
 	"Lebanon",
 	"Lesotho",
@@ -137,7 +134,7 @@ const countryList = [
 	"Madagascar",
 	"Malawi",
 	"Malaysia",
-	"Maldives",
+	"Malh2es",
 	"Mali",
 	"Malta",
 	"Marshall Islands",
@@ -182,7 +179,7 @@ const countryList = [
 	"Portugal",
 	"Puerto Rico",
 	"Qatar",
-	"Republic of North Macedonia",
+	"North Macedonia",
 	"Romania",
 	"Russian Federation",
 	"Rwanda",
@@ -209,7 +206,7 @@ const countryList = [
 	"Solomon Islands",
 	"Somalia",
 	"South Africa",
-	"South Georgia and the South Sandwich Islands",
+	"South Georgia",
 	"South Sudan",
 	"Spain",
 	"Sri Lanka",
@@ -221,7 +218,7 @@ const countryList = [
 	"Syrian Arab Republic",
 	"Taiwan",
 	"Tajikistan",
-	"Tanzania, United Republic of",
+	"Tanzania",
 	"Thailand",
 	"Timor-Leste",
 	"Togo",
@@ -259,19 +256,31 @@ const countries = countryList.map(element => element.replace(/ /g, '-'))
 
 const game = () => {
     const [population, setPopulation ] = useState('');
-    const [firstCountry, setfirstCountry ] = useState('');
+	const [secondPopulation, setSecondPopulation] = useState('');
+    const [firstCountry, setFirstCountry ] = useState('');
     const [secondCountry, setSecondCountry ] = useState('');
 
-    const getRandomCountry = (array: Array<T>) => {
+    const getFirstRandomCountry = (array: Array<T>) => {
         const randomIndex = Math.floor(Math.random() * array.length);
-        setfirstCountry(array[randomIndex])
+        setFirstCountry(array[randomIndex])
         return array[randomIndex].toLowerCase();
-    }
+    };
+
+	const getSecondRandomCountry = (array: Array<T>) => {
+        const randomIndex = Math.floor(Math.random() * array.length);
+        setSecondCountry(array[randomIndex])
+        return array[randomIndex].toLowerCase();		
+	};
 
     const getData = async () => {
-        const { data } = await axios.get(`https://worldpopulationreview.com/countries/${getRandomCountry(countries)}-population`)
-        const $ = cheerio.load(data)
+        const { data: firstData } = await axios.get(`https://worldpopulationreview.com/countries/${getFirstRandomCountry(countries)}-population`);
+        const { data: secondData } = await axios.get(`https://worldpopulationreview.com/countries/${getSecondRandomCountry(countries)}-population`);
+
+		const $ = cheerio.load(firstData)
         setPopulation($('.center span').text())
+
+		const $s = cheerio.load(secondData)
+		setSecondPopulation($s('.center span').text())
 
     }
 
@@ -280,11 +289,11 @@ const game = () => {
     }, [])
 
   return (
-    <main>
-        <div className='text-xl text-center'>{firstCountry}: {population}</div>
-        {/* <div className='text-center'>{secondCountry}: {population}</div> */}
+    <main className='text-white'>
+		<h1 className='text-[3rem] text-center text-cyan-500 mt-[100px]'>Who has the larger population?</h1>
+        <h2 className='text-xl text-center'>{firstCountry}: {population}</h2>
+        <h2 className='text-xl text-center'>{secondCountry}: {secondPopulation}</h2>
     </main>
-
   )
 }
 
