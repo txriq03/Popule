@@ -3,14 +3,6 @@ import Link from 'next/link'
 
 export default function Home() {
 
-  // const getPopulation = async () => {
-  //   console.log('Clicked!')
-
-  //   const res = await fetch('http://localhost:3000/api/getPopulation')
-  //   // const { $s } = await res.json()
-  //   // console.log('Result: ', $s)
-  // }
-
   return (
     <main className='relative items-center overflow-hidden '>
 
