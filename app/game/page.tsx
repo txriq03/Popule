@@ -61,7 +61,6 @@ const countryList = [
 	"Curaçao",
 	"Cyprus",
 	"Czechia",
-	"Côte d'Ivoire",
 	"Denmark",
 	"Djibouti",
 	"Dominica",
@@ -134,7 +133,7 @@ const countryList = [
 	"Madagascar",
 	"Malawi",
 	"Malaysia",
-	"Malh2es",
+	"Maldives",
 	"Mali",
 	"Malta",
 	"Marshall Islands",
@@ -233,9 +232,9 @@ const countryList = [
 	"Uganda",
 	"Ukraine",
 	"United Arab Emirates",
-	"United Kingdom of Great Britain and Northern Ireland",
+	"United Kingdom",
 	"United States Minor Outlying Islands",
-	"United States of America",
+	"United States",
 	"Uruguay",
 	"Uzbekistan",
 	"Vanuatu",
@@ -255,18 +254,19 @@ const countryList = [
 const countries = countryList.map(element => element.replace(/ /g, '-'))
 
 const Game = () => {
-    const [population, setPopulation ] = useState('');
-	const [secondPopulation, setSecondPopulation] = useState('');
+    const [population, setPopulation ] = useState('loading...');
+	const [secondPopulation, setSecondPopulation] = useState('loading...');
     const [firstCountry, setFirstCountry ] = useState('');
     const [secondCountry, setSecondCountry ] = useState('');
 
-    const getFirstRandomCountry = (array: any) => {
+
+    const getFirstRandomCountry = (array: string[]) => {
         const randomIndex = Math.floor(Math.random() * array.length);
         setFirstCountry(array[randomIndex])
         return array[randomIndex].toLowerCase();
     };
 
-	const getSecondRandomCountry = (array: any) => {
+	const getSecondRandomCountry = (array: string[]) => {
         const randomIndex = Math.floor(Math.random() * array.length);
         setSecondCountry(array[randomIndex])
         return array[randomIndex].toLowerCase();		
@@ -290,6 +290,26 @@ const Game = () => {
 
   return (
     <main className='text-white'>
+		<div className=' bg-[#0E0E0E] h-[100%] w-[50%] fixed z-[1] top-0 left-0 overflow-x-hidden pt-[20px]'>
+			<h2 className='text-[5rem] text-center mt-[100px]'>
+				{firstCountry} 
+			</h2>
+			<h3 className='text-[3rem] text-center mt-[10px]'>
+				{population}
+			</h3>
+		</div>
+		<div className=' bg-[#0d0d0d] h-[100%] w-[50%] fixed z-[1] top-0 right-0 overflow-x-hidden pt-[20px]'>
+			<h2 className='text-[5rem] text-center mt-[100px] mx-[5px]'>
+				{secondCountry} 
+			</h2>
+			<h3 className='text-[3rem] text-center mt-[10px]'>
+				{secondPopulation}
+			</h3>
+		</div>
+		<div className='bg-white z-[2] text-black h-[100px] w-[100px] rounded-full absolute top-[50%] left-0 right-0 mx-auto text-center'>
+			<p className='mt-[15px] text-[3rem]'>OR</p>
+		</div>
+		
 		<h1 className='text-[3rem] text-center text-cyan-500 mt-[100px]'>Who has the larger population?</h1>
         <h2 className='text-xl text-center'>{firstCountry}: {population}</h2>
         <h2 className='text-xl text-center'>{secondCountry}: {secondPopulation}</h2>
