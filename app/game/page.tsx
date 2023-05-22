@@ -254,19 +254,19 @@ const countryList = [
 
 const countries = countryList.map(element => element.replace(/ /g, '-'))
 
-const game = () => {
+const Game = () => {
     const [population, setPopulation ] = useState('');
 	const [secondPopulation, setSecondPopulation] = useState('');
     const [firstCountry, setFirstCountry ] = useState('');
     const [secondCountry, setSecondCountry ] = useState('');
 
-    const getFirstRandomCountry = (array: Array<T>) => {
+    const getFirstRandomCountry = (array: any) => {
         const randomIndex = Math.floor(Math.random() * array.length);
         setFirstCountry(array[randomIndex])
         return array[randomIndex].toLowerCase();
     };
 
-	const getSecondRandomCountry = (array: Array<T>) => {
+	const getSecondRandomCountry = (array: any) => {
         const randomIndex = Math.floor(Math.random() * array.length);
         setSecondCountry(array[randomIndex])
         return array[randomIndex].toLowerCase();		
@@ -297,4 +297,4 @@ const game = () => {
   )
 }
 
-export default game
+export default Game
