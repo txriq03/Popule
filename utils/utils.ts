@@ -6,7 +6,6 @@ export const countryList = [
 	"Andorra",
 	"Angola",
 	"Anguilla",
-	"Antarctica",
 	"Antigua and Barbuda",
 	"Argentina",
 	"Armenia",
@@ -105,7 +104,6 @@ export const countryList = [
 	"Italy",
 	"Jamaica",
 	"Japan",
-	"Jersey",
 	"Jordan",
 	"Kazakhstan",
 	"Kenya",
@@ -116,7 +114,6 @@ export const countryList = [
 	"Kyrgyzstan",
 	"Latvia",
 	"Lebanon",
-	"Lesotho",
 	"Liberia",
 	"Libya",
 	"Liechtenstein",
@@ -154,7 +151,6 @@ export const countryList = [
 	"Niger",
 	"Nigeria",
 	"Niue",
-	"Norfolk Island",
 	"Northern Mariana Islands",
 	"Norway",
 	"Oman",
@@ -176,7 +172,7 @@ export const countryList = [
 	"Russian Federation",
 	"Rwanda",
 	"Réunion",
-	"Saint Barthélemy",
+	"Saint Barthelemy",
 	"Saint Helena, Ascension and Tristan da Cunha",
 	"Saint Kitts and Nevis",
 	"Saint Lucia",
@@ -198,7 +194,6 @@ export const countryList = [
 	"Solomon Islands",
 	"Somalia",
 	"South Africa",
-	"South Georgia",
 	"South Sudan",
 	"Spain",
 	"Sri Lanka",
@@ -233,7 +228,8 @@ export const countryList = [
 	"Vatican city",
 	"Venezuela",
 	"Vietnam",
-	"Virgin Islands",
+	"British Virgin Islands",
+	"United States Virgin Islands",
 	"Wallis and Futuna",
 	"Western Sahara",
 	"Yemen",
@@ -255,3 +251,23 @@ export const getSecondRandomCountry = (array: string[], setSecondCountry: any) =
     setSecondCountry(array[randomIndex].replace(/-/g, ' '))
     return array[randomIndex].toLowerCase();		
 };
+
+export const checkAnswer = (population: string, secondPopulation: string, answer: any) => {
+	if (answer == 'left') {
+		if (population >= secondPopulation) {
+			console.log('Correct!')
+			return true
+		} else {
+			console.log('Incorrect!')
+			return false
+		}
+	} else {
+		if (secondPopulation >= population) {
+			console.log('Correct!')
+			return true
+		} else {
+			console.log('Incorrect!')
+			return false
+		}
+	}
+}
