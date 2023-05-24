@@ -1,3 +1,4 @@
+import Scoreboard from '@/components/scoreboard'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -11,24 +12,27 @@ export default function Home() {
         <Image className='object-contain absolute top-[120px] left-0 right-0 mx-auto width-[700px] brightness-[60%]' alt='map' height={700} width={700} src='/map.png'/>
 
         <div className='flex justify-center'>
-          <button className='bg-gradient-to-br from-slate-400 to-zinc-100 border-zinc-500 border-2 px-5 h-[50px] cursor-pointer mx-[15px] text-xl rounded-md '>
-            Github
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 inline ml-2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-            </svg>
+          <button className='mx-[15px]'>
+            <Link href="#_" className="relative inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-tighter text-white bg-gray-800 rounded-md group">
+            <span className="absolute inset-0 w-full h-full mt-1 ml-1 transition-all duration-300 ease-in-out bg-teal-500 rounded-md group-hover:mt-0 group-hover:ml-0"></span>
+            <span className="absolute inset-0 w-full h-full bg-white rounded-md "></span>
+            <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 bg-teal-500 rounded-md opacity-0 group-hover:opacity-100 "></span>
+            <span className="relative text-teal-500 transition-colors duration-200 ease-in-out delay-100 group-hover:text-white mx-[12px]">Github</span>
+            </Link>
   
           </button>
         
-          <button>
-            <Link href='/game' className="px-5 py-2.5 mx-[15px] mb-[100px] relative rounded group font-medium text-white inline-block">
-              <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-green-600 to-cyan-500"></span>
-              <span className="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-green-600 to-cyan-500"></span>
-              <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-green-600 to-cyan-500"></span>
-              <span className="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-green-600 from-cyan-500"></span>
-              <span className="relative text-xl">Play game</span>
+          <button className='mx-[15px]'>
+            <Link href="/game" className="relative inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-tighter text-white bg-gray-800 rounded-md group">
+              <span className="absolute inset-0 w-full h-full mt-1 ml-1 transition-all duration-300 ease-in-out bg-sky-500 rounded-md group-hover:mt-0 group-hover:ml-0"></span>
+              <span className="absolute inset-0 w-full h-full bg-white rounded-md "></span>
+              <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 bg-sky-500 rounded-md opacity-0 group-hover:opacity-100 "></span>
+              <span className="relative text-sky-500 transition-colors duration-200 ease-in-out delay-100 group-hover:text-white">Play game</span>
             </Link>
           </button>
         </div>
+
+        <Scoreboard/>
 
     </main>
   )

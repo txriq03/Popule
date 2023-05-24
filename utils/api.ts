@@ -1,0 +1,13 @@
+import axios from 'axios';
+import * as cheerio from 'cheerio';
+import { utils } from './index'
+
+export const getData = async (setFirstCountry: any, setSecondCountry: any, setPopulation: any, setSecondPopulation: any) => {
+	const { data: firstData } = await axios.get(`https://worldpopulationreview.com/countries/${utils.getFirstRandomCountry(utils.countries, setFirstCountry)}-population`);
+	const { data: secondData } = await axios.get(`https://worldpopulationreview.com/countries/${utils.getSecondRandomCountry(utils.countries, setSecondCountry)}-population`);
+	const $ = cheerio.load(firstData)
+	setPopulation($('.center span').text())
+
+	const $s = cheerio.load(secondData)
+	setSecondPopulation($s('.center span').text())
+}
