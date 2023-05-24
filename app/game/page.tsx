@@ -252,36 +252,39 @@ const countryList = [
 
 
 const countries = countryList.map(element => element.replace(/ /g, '-'))
+const params = {
+	headers: {
+		"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
+	}
+}
 
 const Game = () => {
-    const [population, setPopulation ] = useState('loading...');
-	const [secondPopulation, setSecondPopulation] = useState('loading...');
-    const [firstCountry, setFirstCountry ] = useState('');
-    const [secondCountry, setSecondCountry ] = useState('');
+    const [population, setPopulation ] = useState<string | null>('loading...');
+	const [secondPopulation, setSecondPopulation] = useState<string | null>('loading...');
+    const [firstCountry, setFirstCountry ] = useState<string | null>('');
+    const [secondCountry, setSecondCountry ] = useState<string | null>('');
 
 
     const getFirstRandomCountry = (array: string[]) => {
         const randomIndex = Math.floor(Math.random() * array.length);
-        setFirstCountry(array[randomIndex])
+        setFirstCountry(array[randomIndex].replace('-', ' '))
         return array[randomIndex].toLowerCase();
     };
 
 	const getSecondRandomCountry = (array: string[]) => {
         const randomIndex = Math.floor(Math.random() * array.length);
-        setSecondCountry(array[randomIndex])
+        setSecondCountry(array[randomIndex].replace('-', ' '))
         return array[randomIndex].toLowerCase();		
 	};
 
     const getData = async () => {
         const { data: firstData } = await axios.get(`https://worldpopulationreview.com/countries/${getFirstRandomCountry(countries)}-population`);
         const { data: secondData } = await axios.get(`https://worldpopulationreview.com/countries/${getSecondRandomCountry(countries)}-population`);
-
 		const $ = cheerio.load(firstData)
         setPopulation($('.center span').text())
 
 		const $s = cheerio.load(secondData)
 		setSecondPopulation($s('.center span').text())
-
     }
 
     useEffect(() => {
@@ -290,15 +293,19 @@ const Game = () => {
 
   return (
     <main className='text-white'>
-		<div className=' bg-[#0E0E0E] h-[100%] w-[50%] fixed z-[1] top-0 left-0 overflow-x-hidden pt-[20px]'>
-			<h2 className='text-[5rem] text-center mt-[100px]'>
+		<div className="bg-[url('/forest2.jpg')] brightness-[50%] blur-sm bg-center h-[100%] w-[50%] fixed z-[1] top-0 left-0 overflow-x-hidden "/>
+		<div className='bg-transparent z-[2] h-[100%] w-[50%] fixed top-0 left-0 overflow-x-hidden pt-[20px]'>
+
+			<h2 className=' text-[5rem] text-center mt-[100px]'>
 				{firstCountry} 
 			</h2>
 			<h3 className='text-[3rem] text-center mt-[10px]'>
 				{population}
 			</h3>
 		</div>
-		<div className=' bg-[#0d0d0d] h-[100%] w-[50%] fixed z-[1] top-0 right-0 overflow-x-hidden pt-[20px]'>
+		<div className="bg-[url('/forest.jpg')] bg-bottom bg-transparent brightness-[50%] blur-sm h-[100%] w-[50%] fixed z-[1] top-0 right-0 overflow-x-hidden pt-[20px]"/>
+		<div className='bg-transparent z-[2] h-[100%] w-[50%] fixed top-0 right-0 overflow-x-hidden pt-[20px]'>
+
 			<h2 className='text-[5rem] text-center mt-[100px] mx-[5px]'>
 				{secondCountry} 
 			</h2>
@@ -309,10 +316,6 @@ const Game = () => {
 		<div className='bg-white z-[2] text-black h-[100px] w-[100px] rounded-full absolute top-[50%] left-0 right-0 mx-auto text-center'>
 			<p className='mt-[15px] text-[3rem]'>OR</p>
 		</div>
-		
-		<h1 className='text-[3rem] text-center text-cyan-500 mt-[100px]'>Who has the larger population?</h1>
-        <h2 className='text-xl text-center'>{firstCountry}: {population}</h2>
-        <h2 className='text-xl text-center'>{secondCountry}: {secondPopulation}</h2>
     </main>
   )
 }
