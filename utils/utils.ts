@@ -47,7 +47,7 @@ export const countryList = [
 	"Cocos (Keeling) Islands",
 	"Colombia",
 	"Comoros",
-	"Congo",
+	"Dr Congo",
 	"Cook Islands",
 	"Costa Rica",
 	"Croatia",
@@ -169,11 +169,9 @@ export const countryList = [
 	"Qatar",
 	"North Macedonia",
 	"Romania",
-	"Russian Federation",
 	"Rwanda",
 	"Réunion",
 	"Saint Barthelemy",
-	"Saint Helena, Ascension and Tristan da Cunha",
 	"Saint Kitts and Nevis",
 	"Saint Lucia",
 	"Saint Martin",
@@ -261,7 +259,7 @@ export const checkAnswer = (population: string, secondPopulation: string, answer
 			console.log('Incorrect!')
 			return false
 		}
-	} else {
+	} else if (answer == 'right') {
 		if (secondPopulation >= population) {
 			console.log('Correct!')
 			return true

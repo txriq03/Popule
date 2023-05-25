@@ -6,8 +6,8 @@ export const getData = async (setFirstCountry: any, setSecondCountry: any, setPo
 	const { data: firstData } = await axios.get(`https://worldpopulationreview.com/countries/${utils.getFirstRandomCountry(utils.countries, setFirstCountry)}-population`);
 	const { data: secondData } = await axios.get(`https://worldpopulationreview.com/countries/${utils.getSecondRandomCountry(utils.countries, setSecondCountry)}-population`);
 	const $ = cheerio.load(firstData)
-	setPopulation($('.center span').text())
+	setPopulation(parseInt($('.center span').text().replace(/,/g, '')))
 
 	const $s = cheerio.load(secondData)
-	setSecondPopulation($s('.center span').text())
+	setSecondPopulation(parseInt($s('.center span').text().replace(/,/g, '')))
 }
