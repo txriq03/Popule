@@ -3,6 +3,8 @@ import { useEffect, useState} from 'react';
 import { utils } from '../../utils'
 import { api } from '../../utils'
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { FireIcon } from "@heroicons/react/20/solid";
+
 
 const Game = () => {
     const [population, setPopulation ] = useState<string>('loading...');
@@ -10,6 +12,7 @@ const Game = () => {
     const [firstCountry, setFirstCountry ] = useState<string | null>('');
     const [secondCountry, setSecondCountry ] = useState<string | null>('');
 	const [answer, setAnswer] = useState<null | string>(null);
+	const [streak, setStreak] = useState<number>(0);
 
     useEffect(() => {
         api.getData(setFirstCountry, setSecondCountry, setPopulation, setSecondPopulation)
@@ -42,7 +45,7 @@ const Game = () => {
 		</div>
 		{answer != null &&
 			<>
-				{utils.checkAnswer(population, secondPopulation, answer) ? 
+				{utils.checkAnswer(population, secondPopulation, answer, streak, setStreak) ? 
 					<div className='bg-emerald-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
 						<CheckIcon className=" mx-[10px] mt-[10px] text-white 3xl:ml-[15px] 3xl:mt-[15px]" />
 					</div>
@@ -53,6 +56,10 @@ const Game = () => {
 				}
 			</>
 		}
+		<div className='absolute top-[60%] left-[50%] translate-x-[-50%] z-[5]'>
+			<FireIcon className="relative h-[100px ] w-[100px] text-orange-400" /> 
+			<h2 className='absolute text-[2.5rem] left-[50%] translate-x-[-50%] top-[25%] text-center font-bold '>{streak}</h2>
+		</div>
     </main>
   )
 }

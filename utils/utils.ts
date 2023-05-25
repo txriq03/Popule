@@ -250,10 +250,11 @@ export const getSecondRandomCountry = (array: string[], setSecondCountry: any) =
     return array[randomIndex].toLowerCase();		
 };
 
-export const checkAnswer = (population: string, secondPopulation: string, answer: any) => {
+export const checkAnswer = (population: string, secondPopulation: string, answer: any, streak: number, setStreak: any) => {
 	if (answer == 'left') {
 		if (population >= secondPopulation) {
 			console.log('Correct!')
+			setStreak(streak + 1)
 			return true
 		} else {
 			console.log('Incorrect!')
@@ -262,6 +263,7 @@ export const checkAnswer = (population: string, secondPopulation: string, answer
 	} else if (answer == 'right') {
 		if (secondPopulation >= population) {
 			console.log('Correct!')
+			setStreak(streak + 1)
 			return true
 		} else {
 			console.log('Incorrect!')
