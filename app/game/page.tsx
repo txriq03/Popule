@@ -13,10 +13,15 @@ const Game = () => {
     const [secondCountry, setSecondCountry ] = useState<string | null>('');
 	const [answer, setAnswer] = useState<null | string>(null);
 	const [streak, setStreak] = useState<number>(0);
+	const counter = 0;
 
     useEffect(() => {
         api.getData(setFirstCountry, setSecondCountry, setPopulation, setSecondPopulation)
     }, [])
+
+	useEffect(() => {
+		utils.checkAnswer(population, secondPopulation, answer) && setStreak(streak + 1)
+	}, [utils.checkAnswer(population, secondPopulation, answer)])
 
   return (
     <main className='text-white'>
@@ -45,7 +50,7 @@ const Game = () => {
 		</div>
 		{answer != null &&
 			<>
-				{utils.checkAnswer(population, secondPopulation, answer, streak, setStreak) ? 
+				{utils.checkAnswer(population, secondPopulation, answer) ? 
 					<div className='bg-emerald-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
 						<CheckIcon className=" mx-[10px] mt-[10px] text-white 3xl:ml-[15px] 3xl:mt-[15px]" />
 					</div>
@@ -56,9 +61,9 @@ const Game = () => {
 				}
 			</>
 		}
-		<div className='absolute top-[60%] left-[50%] translate-x-[-50%] z-[5]'>
-			<FireIcon className="relative h-[100px ] w-[100px] text-orange-400" /> 
-			<h2 className='absolute text-[2.5rem] left-[50%] translate-x-[-50%] top-[25%] text-center font-bold '>{streak}</h2>
+		<div className='absolute top-[0%] right-[0%] mt-[20px] mr-[15px] z-[5] flex'>
+			<FireIcon className="h-[50px ] w-[50px] text-orange-400" /> 
+			<h2 className=' text-[2.5rem]  text-center font-bold '>{streak}</h2>
 		</div>
     </main>
   )
