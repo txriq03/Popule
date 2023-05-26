@@ -1,5 +1,6 @@
 import './globals.css'
 import { Poppins } from 'next/font/google'
+import './odometer.theme.default.css'
 
 const poppins = Poppins({
   weight: '400',
