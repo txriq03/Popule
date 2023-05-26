@@ -1,6 +1,8 @@
 import Scoreboard from '@/components/scoreboard'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+
 
 export default function Home() {
 
@@ -13,11 +15,11 @@ export default function Home() {
 
         <div className='flex justify-center'>
           <button className='mx-[15px]'>
-            <Link href="#_" className="relative inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-tighter text-white bg-gray-800 rounded-md group">
-            <span className="absolute inset-0 w-full h-full mt-1 ml-1 transition-all duration-300 ease-in-out bg-teal-500 rounded-md group-hover:mt-0 group-hover:ml-0"></span>
-            <span className="absolute inset-0 w-full h-full bg-white rounded-md "></span>
-            <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 bg-teal-500 rounded-md opacity-0 group-hover:opacity-100 "></span>
-            <span className="relative text-teal-500 transition-colors duration-200 ease-in-out delay-100 group-hover:text-white mx-[12px]">Github</span>
+            <Link href="https://github.com/txriq03/Popule" target='_blank' className="relative inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-tighter text-white bg-gray-800 rounded-md group">
+              <span className="absolute inset-0 w-full h-full mt-1 ml-1 transition-all duration-300 ease-in-out bg-teal-500 rounded-md group-hover:mt-0 group-hover:ml-0"></span>
+              <span className="absolute inset-0 w-full h-full bg-white rounded-md "></span>
+              <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 bg-teal-500 rounded-md opacity-0 group-hover:opacity-100 "></span>
+              <span className="relative text-teal-500 transition-colors duration-200 ease-in-out delay-100 group-hover:text-white">Github <ArrowTopRightOnSquareIcon className="inline ml-[5px] h-6 w-6" /></span>
             </Link>
   
           </button>

@@ -43,8 +43,6 @@ export const countryList = [
 	"Chad",
 	"Chile",
 	"China",
-	"Christmas Island",
-	"Cocos (Keeling) Islands",
 	"Colombia",
 	"Comoros",
 	"Dr Congo",
@@ -87,7 +85,7 @@ export const countryList = [
 	"Guatemala",
 	"Guernsey",
 	"Guinea",
-	"Guinea-Bissau",
+	// "Guinea-Bissau",
 	"Guyana",
 	"Haiti",
 	"Honduras",
@@ -233,7 +231,7 @@ export const countryList = [
 	"Yemen",
 	"Zambia",
 	"Zimbabwe",
-	"Åland Islands"
+	"Aland Islands"
 ];
 
 export const countries = countryList.map(element => element.replace(/ /g, '-'))

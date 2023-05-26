@@ -2,7 +2,7 @@
 import { useEffect, useState} from 'react';
 import { utils } from '../../utils'
 import { api } from '../../utils'
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { FireIcon } from "@heroicons/react/20/solid";
 
 
@@ -13,15 +13,20 @@ const Game = () => {
     const [secondCountry, setSecondCountry ] = useState<string | null>('');
 	const [answer, setAnswer] = useState<null | string>(null);
 	const [streak, setStreak] = useState<number>(0);
-	const counter = 0;
+
+	const handleCorrect = () => {
+		setStreak(streak + 1)
+		setAnswer(null)
+        api.getData(setFirstCountry, setSecondCountry, setPopulation, setSecondPopulation)
+	}
 
     useEffect(() => {
         api.getData(setFirstCountry, setSecondCountry, setPopulation, setSecondPopulation)
     }, [])
 
 	useEffect(() => {
-		utils.checkAnswer(population, secondPopulation, answer) && setStreak(streak + 1)
-	}, [utils.checkAnswer(population, secondPopulation, answer)])
+		utils.checkAnswer(population, secondPopulation, answer) && handleCorrect()
+	}, [answer])
 
   return (
     <main className='text-white'>
@@ -45,26 +50,23 @@ const Game = () => {
 			</h3>
 		</div>
 
+		{streak === 0 ? 
 		<div className='bg-white z-[2] text-black h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] origin-center left-0 right-0 mx-auto text-center'>
 			<p className='mt-[15px] text-[3rem] 3xl:text-[4rem] 3xl:mt-[28px]'>OR</p>
 		</div>
-		{answer != null &&
-			<>
-				{utils.checkAnswer(population, secondPopulation, answer) ? 
-					<div className='bg-emerald-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
-						<CheckIcon className=" mx-[10px] mt-[10px] text-white 3xl:ml-[15px] 3xl:mt-[15px]" />
-					</div>
-					:
-					<div className='bg-rose-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
-						<XMarkIcon className=" mx-[10px] mt-[10px] text-white 3xl:ml-[15px] 3xl:mt-[15px]" />
-					</div>
-				}
-			</>
+		:
+		<>
+			{(utils.checkAnswer(population, secondPopulation, answer) || answer === null) ? 
+			<div className='bg-emerald-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
+				<h2 className=" mx-[10px] mt-[13px] text-white text-[3rem] 3xl:ml-[15px] 3xl:mt-[15px]">{streak}</h2>
+			</div>
+			:
+			<div className='bg-rose-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
+				<XMarkIcon className=" mx-[10px] mt-[10px] text-white 3xl:ml-[15px] 3xl:mt-[15px]" />
+			</div>
+			}
+		</>
 		}
-		<div className='absolute top-[0%] right-[0%] mt-[20px] mr-[15px] z-[5] flex'>
-			<FireIcon className="h-[50px ] w-[50px] text-orange-400" /> 
-			<h2 className=' text-[2.5rem]  text-center font-bold '>{streak}</h2>
-		</div>
     </main>
   )
 }
