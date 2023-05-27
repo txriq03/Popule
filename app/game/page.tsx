@@ -4,8 +4,12 @@ import { utils } from '../../utils'
 import { api } from '../../utils'
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { FireIcon } from "@heroicons/react/20/solid";
-import Odometer from 'react-odometerjs';
+import dynamic from 'next/dynamic'
 
+const Odometer = dynamic(import('react-odometerjs'), {
+    ssr: false,
+    loading: () => <h2>0</h2>
+});
 
 const Game = () => {
     const [population, setPopulation ] = useState<string>('loading...');
@@ -60,7 +64,7 @@ const Game = () => {
 			{(utils.checkAnswer(population, secondPopulation, answer) || answer === null) ? 
 			<div className='bg-emerald-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
 				<h2 className=" mx-[10px] mt-[13px] text-white text-[3rem] 3xl:text-[5rem] 3xl:ml-[15px] 3xl:mt-[15px]">
-					<Odometer value={streak} format="(.ddd),dd" duration={1000} />
+					<Odometer value={streak} duration={1000} />
 				</h2>
 			</div>
 			:
