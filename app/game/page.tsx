@@ -1,9 +1,10 @@
 'use client'
 import { useEffect, useState} from 'react';
 import { utils } from '../../utils'
-import { api } from '../../utils'
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import dynamic from 'next/dynamic';
+import popData from '../../JSON/countries-table.json';
+
 
 const MyOdometer = dynamic(
     () => import('../../components/MyOdometer'), {
@@ -13,7 +14,7 @@ const MyOdometer = dynamic(
   )
 
 const Game = () => {
-    const [population, setPopulation ] = useState<string>('loading...');
+    const [firstPopulation, setFirstPopulation ] = useState<string>('loading...');
 	const [secondPopulation, setSecondPopulation] = useState<string>('loading...');
     const [firstCountry, setFirstCountry ] = useState<string | null>('');
     const [secondCountry, setSecondCountry ] = useState<string | null>('');
@@ -23,15 +24,15 @@ const Game = () => {
 	const handleCorrect = () => {
 		setStreak(streak + 1)
 		setAnswer(null)
-        api.getData(setFirstCountry, setSecondCountry, setPopulation, setSecondPopulation)
+		utils.randomPopData(popData, setFirstCountry, setSecondCountry, setFirstPopulation, setSecondPopulation)
 	}
 
     useEffect(() => {
-        api.getData(setFirstCountry, setSecondCountry, setPopulation, setSecondPopulation)
+		utils.randomPopData(popData, setFirstCountry, setSecondCountry, setFirstPopulation, setSecondPopulation)
     }, [])
 
 	useEffect(() => {
-		utils.checkAnswer(population, secondPopulation, answer) && handleCorrect()
+		utils.checkAnswer(firstPopulation, secondPopulation, answer) && handleCorrect()
 	}, [answer])
 
   return (
@@ -42,7 +43,7 @@ const Game = () => {
 				{firstCountry} 
 			</h2>
 			<h3 className='text-[3rem] text-center mt-[10px] font-bold'>
-				{population.toLocaleString()}
+				{firstPopulation.toLocaleString()}
 			</h3>
 		</div>
 
@@ -62,7 +63,7 @@ const Game = () => {
 		</div>
 		:
 		<>
-			{(utils.checkAnswer(population, secondPopulation, answer) || answer === null) ? 
+			{(utils.checkAnswer(firstPopulation, secondPopulation, answer) || answer === null) ? 
 			<div className='bg-emerald-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
 				<h2 className=" mx-[10px] mt-[13px] text-white text-[3rem] 3xl:text-[5rem] 3xl:ml-[15px] 3xl:mt-[15px]">
 					<MyOdometer value={streak} duration={1000}/>

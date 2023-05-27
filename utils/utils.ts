@@ -265,3 +265,32 @@ export const checkAnswer = (population: string, secondPopulation: string, answer
 		}
 	}
 }
+
+export const randomPopData = async (jsonData: object, setFirstCountry: any, setSecondCountry: any, setFirstPop: any, setSecondPop: any) => {
+	const values = Object.values(jsonData)
+	const randomIndex = Math.floor(Math.random() * values.length);
+	const randomValue = values[randomIndex];
+
+	values.splice(randomIndex, 1)
+
+	let randomIndex1;
+	let randomValue1;
+
+	do {
+		randomIndex1 = Math.floor(Math.random() * values.length);
+		randomValue1 = values[randomIndex1];
+	  } while (randomIndex1 === randomIndex);
+
+
+	// const randomIndex1 = Math.floor(Math.random() * values.length);
+	// const randomValue1 = values[randomIndex];
+
+	
+	setFirstCountry(randomValue.country)
+	console.log(randomValue.country)
+	setFirstPop(randomValue.pop2023)	
+
+	setSecondCountry(randomValue1.country)
+	setSecondPop(randomValue1.pop2023)
+
+}
