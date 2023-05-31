@@ -58,23 +58,36 @@ const Game = () => {
 		</div>
 
 		{streak === 0 ? 
-		<div className='bg-white z-[2] text-black h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] origin-center left-0 right-0 mx-auto text-center'>
-			<p className='mt-[15px] text-[3rem] 3xl:text-[4rem] 3xl:mt-[28px]'>OR</p>
-		</div>
-		:
-		<>
-			{(utils.checkAnswer(firstPopulation, secondPopulation, answer) || answer === null) ? 
-			<div className='bg-emerald-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
-				<h2 className=" mx-[10px] mt-[13px] text-white text-[3rem] 3xl:text-[5rem] 3xl:ml-[15px] 3xl:mt-[15px]">
-					<MyOdometer value={streak} duration={1000}/>
-				</h2>
+			<div className='bg-white z-[2] text-black h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] origin-center left-0 right-0 mx-auto text-center'>
+				<p className='mt-[15px] text-[3rem] 3xl:text-[4rem] 3xl:mt-[28px]'>OR</p>
 			</div>
 			:
-			<div className='bg-rose-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
-				<XMarkIcon className=" mx-[10px] mt-[10px] text-white 3xl:ml-[15px] 3xl:mt-[15px]" />
-			</div>
-			}
-		</>
+			<>
+				{(utils.checkAnswer(firstPopulation, secondPopulation, answer) || answer === null) ? 
+				<div className='bg-emerald-500 z-[5] text-white h-[100px] w-[100px] 3xl:h-[150px] 3xl:w-[150px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
+					<h2 className=" mx-[10px] mt-[13px] text-white text-[3rem] 3xl:text-[5rem] 3xl:ml-[15px] 3xl:mt-[15px]">
+						<MyOdometer value={streak} duration={1000}/>
+					</h2>
+				</div>
+				:
+				<>
+					<div className='absolute z-[5] bg-rose-500 h-[100vh] w-[100vw]'/>
+					{/* <div className='bg-rose-500 z-[6] text-white h-[250px] w-[250px] 3xl:h-[350px] 3xl:w-[350px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
+						<XMarkIcon className=" mx-[10px] mt-[10px] text-white 3xl:ml-[15px] 3xl:mt-[15px] " />
+					</div> */}
+					<div className='absolute z-[6] text-[10rem] top-[35%] left-[50%] translate-x-[-50%]'>
+						<p className='text-center'>
+							{streak}
+						</p>
+					</div>
+					<h2 onClick={() => setStreak(0)} className='absolute z-[6] text-rose-600 font-bold bg-white rounded-[5px] top-[65%] left-[50%] translate-x-[-50%] w-[200px] cursor-pointer hover:bg-gray-200 transition-all '>
+						<p className='my-[5px] mx-auto text-xl text-center'>
+							Play Again
+						</p>
+					</h2>
+				</>
+				}
+			</>
 		}
     </main>
   )
