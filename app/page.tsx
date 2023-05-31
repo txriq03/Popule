@@ -1,4 +1,4 @@
-import Scoreboard from '@/components/scoreboard'
+import Scoreboard from '@/components/Scoreboard'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
@@ -13,7 +13,7 @@ export default function Home() {
         <h2 className='text-[2rem] mx-auto text-center text-zinc-400 mb-[100px]'>Can you guess the correct country?</h2>
         <Image className='object-contain absolute top-[120px] left-0 right-0 mx-auto width-[700px] brightness-[60%]' alt='map' height={700} width={700} src='/map.png'/>
 
-        <div className='flex justify-center'>
+        <div className='flex justify-center mb-[10px]'>
           <button className='mx-[15px]'>
             <Link href="https://github.com/txriq03/Popule" target='_blank' className="relative inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-tighter text-white bg-gray-800 rounded-md group">
               <span className="absolute inset-0 w-full h-full mt-1 ml-1 transition-all duration-300 ease-in-out bg-teal-500 rounded-md group-hover:mt-0 group-hover:ml-0"></span>
@@ -34,7 +34,7 @@ export default function Home() {
           </button>
         </div>
 
-        <Scoreboard/>
+        {/* <Scoreboard/> */}
 
     </main>
   )

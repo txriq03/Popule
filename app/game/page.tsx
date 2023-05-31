@@ -4,12 +4,13 @@ import { utils } from '../../utils'
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import dynamic from 'next/dynamic';
 import popData from '../../JSON/countries-table.json';
-
+import Link from 'next/link';
+import GameOver from '../../components/GameOver'
 
 const MyOdometer = dynamic(
     () => import('../../components/MyOdometer'), {
 		ssr: false,
-		loading: () => <p>0</p>
+		loading: () => 0
 	}
   )
 
@@ -37,24 +38,24 @@ const Game = () => {
 
   return (
     <main className='text-white'>
-		<div className="bg-[url('/forest2.jpg')] brightness-[50%] blur-sm bg-center h-[100%] w-[50%] fixed z-[1] top-0 left-0 overflow-x-hidden "/>
-		<div onClick={() => {setAnswer('left')}} className='bg-transparent z-[2] h-[100%] w-[50%] fixed top-0 left-0 overflow-x-hidden '>
-			<h2 className=' text-[5rem] text-center mt-[200px]'>
+		<div className="bg-[url('/forest2.jpg')] brightness-[50%] blur-sm bg-center h-[100%] w-[50%] fixed z-[1] top-0 left-0 overflow-x-hidden max-lg:h-[50%]  max-lg:w-[100%] "/>
+		<div onClick={() => {setAnswer('left')}} className='bg-transparent z-[2] h-[100%] w-[50%] fixed top-0 left-0 overflow-x-hidden max-lg:h-[50%]  max-lg:w-[100%] overflow-hidden'>
+			<h2 className=' text-[5rem] max-md:text-[4rem] text-center mt-[200px] max-lg:mt-[0px] max-lg:py-[150px] mx-[10px] max-lg:align-middle '>
 				{firstCountry} 
 			</h2>
-			<h3 className='text-[3rem] text-center mt-[10px] font-bold'>
+			{/* <h3 className='text-[3rem] max-md:text-[2rem] text-center mt-[10px] font-bold max-lg:mb-[100px]'>
 				{firstPopulation.toLocaleString()}
-			</h3>
+			</h3> */}
 		</div>
 
-		<div className="bg-[url('/forest.jpg')] bg-bottom bg-transparent brightness-[50%] blur-sm h-[100%] w-[50%] fixed z-[1] top-0 right-0 overflow-x-hidden "/>
-		<div onClick={() => {setAnswer('right')}} className='bg-transparent z-[2] h-[100%] w-[50%] fixed top-0 right-0 overflow-x-hidden '>
-			<h2 className='text-[5rem] text-center mt-[200px] mx-[5px] '>
+		<div className="bg-[url('/forest.jpg')] bg-bottom brightness-[50%] blur-sm h-[100%] w-[50%] fixed z-[1] top-0 right-0 overflow-x-hidden max-lg:h-[50%] max-lg:w-[100%] max-lg:top-[50%] "/>
+		<div onClick={() => {setAnswer('right')}} className='bg-transparent z-[2] h-[100%] w-[50%] fixed top-0 right-0 overflow-x-hidden max-lg:h-[50%] max-lg:w-[100%] max-lg:top-[50%] overflow-hidden '>
+			<h2 className='text-[5rem] max-md:text-[4rem] text-center mt-[200px] mx-[10px] max-lg:mt-[0px] max-lg:py-[150px] max-lg:align-middle  '>
 				{secondCountry} 
 			</h2>
-			<h3 className='text-[3rem] text-center mt-[10px] font-bold'>
+			{/* <h3 className='text-[3rem] max-md:text-[2rem] text-center mt-[10px] font-bold max-lg:mb-[100px]'>
 				{secondPopulation.toLocaleString()}
-			</h3>
+			</h3> */}
 		</div>
 
 		{streak === 0 ? 
@@ -70,22 +71,7 @@ const Game = () => {
 					</h2>
 				</div>
 				:
-				<>
-					<div className='absolute z-[5] bg-rose-500 h-[100vh] w-[100vw]'/>
-					{/* <div className='bg-rose-500 z-[6] text-white h-[250px] w-[250px] 3xl:h-[350px] 3xl:w-[350px] rounded-full absolute top-[50%] translate-y-[-50%] left-0 right-0 mx-auto text-center'>
-						<XMarkIcon className=" mx-[10px] mt-[10px] text-white 3xl:ml-[15px] 3xl:mt-[15px] " />
-					</div> */}
-					<div className='absolute z-[6] text-[10rem] top-[35%] left-[50%] translate-x-[-50%]'>
-						<p className='text-center'>
-							{streak}
-						</p>
-					</div>
-					<h2 onClick={() => setStreak(0)} className='absolute z-[6] text-rose-600 font-bold bg-white rounded-[5px] top-[65%] left-[50%] translate-x-[-50%] w-[200px] cursor-pointer hover:bg-gray-200 transition-all '>
-						<p className='my-[5px] mx-auto text-xl text-center'>
-							Play Again
-						</p>
-					</h2>
-				</>
+				<GameOver streak={streak} setStreak={setStreak}/>
 				}
 			</>
 		}
