@@ -5,7 +5,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import dynamic from 'next/dynamic';
 import popData from '../../JSON/countries-table.json';
 import Link from 'next/link';
-import GameOver from '../../components/GameOver'
+import GameOver from '@/components/GameOver'
 
 const MyOdometer = dynamic(
     () => import('../../components/MyOdometer'), {
