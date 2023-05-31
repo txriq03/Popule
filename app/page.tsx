@@ -1,4 +1,4 @@
-import Scoreboard from '@/components/Scoreboard'
+import Scoreboard from '@/components/scoreboard'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
