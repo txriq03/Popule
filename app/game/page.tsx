@@ -10,7 +10,7 @@ import GameOver from '../../components/GameOver'
 const MyOdometer = dynamic(
     () => import('../../components/MyOdometer'), {
 		ssr: false,
-		loading: () => 0
+		loading: () => <p>0</p>
 	}
   )
 
