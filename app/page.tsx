@@ -1,4 +1,3 @@
-import Scoreboard from '@/components/scoreboard'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
@@ -34,6 +33,9 @@ export default function Home() {
           </button>
         </div>
 
+        <button className='mx-auto w-[310px] my-[20px] bg-white rounded-[5px] flex justify-center text-orange-400 hover:bg-orange-400 hover:drop-shadow-lg hover:text-white transition-all duration-300 shadow-md '>
+          <p className='text-center font-bold my-[10px] text-xl '>Top Scores</p>
+        </button>
         {/* <Scoreboard/> */}
 
     </main>
